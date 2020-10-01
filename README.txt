@@ -14,6 +14,10 @@ There is NO WARRANTY!
 To build and install the binding, run:
   make
   su -c 'make install'
+
+You can also install with opam:
+  opam install .
+
 to test the bindings with a "hello world" example, run:
   make test
 and for the module documentation:
