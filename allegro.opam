@@ -1,0 +1,37 @@
+opam-version: "2.0"
+name: "allegro"
+license: "restrictionless Zlib"
+maintainer: "Florent Monnier <monnier.florent@gmail.com>"
+authors: [
+  "Florent Monnier"
+]
+
+homepage: "https://github.com/fccm/ocaml-allegro"
+bug-reports: "https://github.com/fccm/ocaml-allegro/issues"
+dev-repo: "git+https://github.com/fccm/ocaml-allegro.git"
+doc: "https://fccm.github.io/ocaml-allegro/"
+
+tags: [ "bindings" "graphics" "audio" "multimedia" "gamedev" "cross-platform" ]
+
+synopsis: "Bindings to the Allegro library"
+description: """
+An OCaml bindings to the Allegro multimedia library.
+
+Allegro homepage:  https://liballeg.org/
+
+This version of the bindings is known to work with Allegro version 4.4.3
+"""
+depexts: [
+  ["liballegro4-dev"] {os-family = "debian"}
+  ["liballegro4-devel"] {os-distribution = "mageia"}
+]
+depends: [
+  "ocaml"
+  "ocamlfind" {build}
+]
+build: [
+  [make]
+]
+install: [
+  [make "findinstall"]
+]
