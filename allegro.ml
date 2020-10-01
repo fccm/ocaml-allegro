@@ -592,14 +592,6 @@ external retrace_count: unit -> int = "get_retrace_count"
 external rest: time:int -> unit = "ml_rest"
 
 
-#ifdef MLI
-type cb_id
-val install_param_int: ms:int -> cb:(param:'a -> unit) -> param:'a -> cb_id
-(** returns the id of the callback which can be used with [remove_param_int] *)
-val remove_param_int: id:cb_id -> unit
-
-#else
-(* ML *)
 type cb_id = int
 
 (*
@@ -632,7 +624,6 @@ let remove_param_int ~id =
   with Not_found ->
     invalid_arg "remove_param_int";
 ;;
-#endif
 
 
 
@@ -797,13 +788,6 @@ external hline: bmp:bitmap -> x1:int -> y:int -> x2:int -> color:color -> unit =
 external getpixel: bmp:bitmap -> x:int -> y:int -> color = "ml_getpixel"
 
 (* {{{ do_circle *)
-#ifdef MLI
-
-val do_circle: bmp:bitmap -> x:int -> y:int -> radius:int -> d:int ->
-      proc:(bmp:bitmap -> x:int -> y:int -> d:int -> unit) -> unit
-
-#else
-(* ML *)
 
 external do_circle: bmp:bitmap -> x:int -> y:int -> radius:int -> d:int -> unit = "ml_do_circle"
 
@@ -812,16 +796,8 @@ let do_circle ~bmp ~x ~y ~radius ~d ~proc =
   do_circle ~bmp ~x ~y ~radius ~d;
 ;;
 
-#endif
 (* }}} *)
 (* {{{ do_ellipse *)
-#ifdef MLI
-
-val do_ellipse: bmp:bitmap -> x:int -> y:int -> rx:int -> ry:int -> d:int ->
-      proc:(bmp:bitmap -> x:int -> y:int -> d:int -> unit) -> unit
-
-#else
-(* ML *)
 
 external do_ellipse: bmp:bitmap -> x:int -> y:int -> rx:int -> ry:int -> d:int -> unit
     = "ml_do_ellipse_bytecode"
@@ -832,7 +808,6 @@ let do_ellipse ~bmp ~x ~y ~rx ~ry ~d ~proc =
   do_ellipse ~bmp ~x ~y ~rx ~ry ~d;
 ;;
 
-#endif
 (* }}} *)
 
 (* TODO
@@ -967,19 +942,6 @@ external textout_right_ex: bmp:bitmap -> f:font -> str:string ->
       "ml_textout_right_ex_native"
 
 (* {{{ textprintf_ex *)
-#ifdef MLI
-
-(*
-val textprintf_ex: bmp:bitmap -> f:font ->
-    x:int -> y:int -> color:color -> bg:color ->
-    ('a, unit, string, unit) format4 -> 'a
-*)
-val textprintf_ex: bitmap -> font ->
-    int -> int -> color -> color ->
-    ('a, unit, string, unit) format4 -> 'a
-
-#else
-(* ML *)
 
 (*
 let textprintf_ex ~bmp ~f ~x ~y ~color ~bg fmt =
@@ -995,16 +957,8 @@ let textprintf_ex bmp f x y color bg fmt =
   ) fmt
 ;;
 
-#endif
 (* }}} *)
 (* {{{ textprintf_centre_ex *)
-#ifdef MLI
-
-val textprintf_centre_ex: bitmap -> font ->
-    int -> int -> color -> color ->
-    ('a, unit, string, unit) format4 -> 'a
-
-#else
 
 let textprintf_centre_ex bmp f x y color bg fmt =
   Printf.ksprintf (fun str ->
@@ -1012,16 +966,8 @@ let textprintf_centre_ex bmp f x y color bg fmt =
   ) fmt
 ;;
 
-#endif
 (* }}} *)
 (* {{{ textprintf_justify_ex *)
-#ifdef MLI
-
-val textprintf_justify_ex: bitmap -> font ->
-    int -> int -> int -> int -> color -> color ->
-    ('a, unit, string, unit) format4 -> 'a
-
-#else
 
 let textprintf_justify_ex bmp f x1 x2 y diff color bg fmt =
   Printf.ksprintf (fun str ->
@@ -1029,16 +975,8 @@ let textprintf_justify_ex bmp f x1 x2 y diff color bg fmt =
   ) fmt
 ;;
 
-#endif
 (* }}} *)
 (* {{{ textprintf_right_ex *)
-#ifdef MLI
-
-val textprintf_right_ex: bitmap -> font ->
-    int -> int -> color -> color ->
-    ('a, unit, string, unit) format4 -> 'a
-
-#else
 
 let textprintf_right_ex bmp f x y color bg fmt =
   Printf.ksprintf (fun str ->
@@ -1046,7 +984,6 @@ let textprintf_right_ex bmp f x y color bg fmt =
   ) fmt
 ;;
 
-#endif
 (* }}} *)
 
 
@@ -1069,20 +1006,6 @@ external destroy_font: f:font -> unit = "ml_destroy_font"
     Allegro API documentation for this module} *)
 
 (* {{{ drawing_mode *)
-#ifdef MLI
-
-type draw_mode =
-  | DRAW_MODE_SOLID                                 (* the default, solid color drawing *)
-  | DRAW_MODE_XOR                                   (* exclusive-or drawing *)
-  | DRAW_MODE_COPY_PATTERN of bitmap * int * int    (* multicolored pattern fill *)
-  | DRAW_MODE_SOLID_PATTERN of bitmap * int * int   (* single color pattern fill *)
-  | DRAW_MODE_MASKED_PATTERN of bitmap * int * int  (* masked pattern fill *)
-  | DRAW_MODE_TRANS                                 (* translucent color blending *)
-
-val drawing_mode: draw_mode:draw_mode -> unit
-
-#else
-(* ML *)
 
 type _draw_mode =
   | DM_SOLID
@@ -1113,7 +1036,6 @@ let drawing_mode ~draw_mode =
   | DRAW_MODE_TRANS -> drawing_mode_1 DM_TRANS
 ;;
 
-#endif
 (* }}} *)
 
 external xor_mode: on:bool -> unit = "ml_xor_mode"

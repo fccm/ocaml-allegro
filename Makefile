@@ -10,11 +10,6 @@ dll_alleg_stubs.so: alleg-wrap.o
 	ocamlmklib  -o  _alleg_stubs  $<  \
 		 `allegro-config --libs $(ALL_DEBUG)`
 
-allegro.ml: allegro.ml.cpp
-	cpp -C $<  > $@
-
-allegro.mli: allegro.ml.cpp
-	cpp -DMLI -C $<  > $@
 
 allegro.cmi: allegro.mli
 	ocamlc -c $<
