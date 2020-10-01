@@ -1,5 +1,5 @@
 OCaml binding for Allegro.
-Copyright (C) 2009 Florent Monnier
+Copyright (C) 2007 Florent Monnier
 
 This software is provided "AS-IS", without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from
