@@ -1,0 +1,5 @@
+name = "ocaml-allegro"
+description = "Bindings to the Allegro library."
+license = "Zlib"
+archive(byte) = "allegro.cma"
+archive(native) = "allegro.cmxa"
