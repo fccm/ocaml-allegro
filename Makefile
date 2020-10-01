@@ -101,16 +101,11 @@ VERSION=alpha
 R_DIR=ocaml-allegro-$(VERSION)
 TARBALL=$(R_DIR).tgz
 
-snapshot pack: $(TARBALL)
+release: $(TARBALL)
 
-LICENCE_GPL.txt:
-	wget http://www.gnu.org/licenses/gpl-3.0.txt
-	mv gpl-3.0.txt $@
-
-$(R_DIR): LICENCE_GPL.txt allegro.ml alleg-wrap.c Makefile README.txt examples
+$(R_DIR): allegro.ml allegro.mli alleg-wrap.c META Makefile README.txt LICENSE.txt examples
 	mkdir -p $(R_DIR)
-	mv -f LICENCE_GPL.txt $(R_DIR)/
-	cp -f allegro.ml.cpp alleg-wrap.c Makefile README.txt $(R_DIR)/
+	cp -f allegro.ml allegro.mli alleg-wrap.c META Makefile README.txt LICENSE.txt $(R_DIR)/
 	(cd examples && make clean)
 	cp -r examples $(R_DIR)/
 
