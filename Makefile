@@ -95,6 +95,14 @@ install: $(DIST_FILES)  $(SO_DIST_FILES)
 	        $(PREFIX)/
 # end of install
 
+# install with findlib
+
+.PHONY: findinstall
+findinstall: allegro.cma
+	ocamlfind install allegro META \
+	  *.cm[aix] *.cmx[as] allegro.a *_alleg_stubs.*
+
+
 # tar-ball
 
 VERSION=alpha
