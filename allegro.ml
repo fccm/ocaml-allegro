@@ -204,7 +204,7 @@ external allegro_vram_single_surface: unit -> bool = "ml_vram_single_surface"
 external allegro_dos: unit -> bool = "ml_allegro_dos"
 
 
- 
+
 (** {3:col Truecolor Pixel Formats} *)
 
 (** {{:http://alleg.sourceforge.net/stabledocs/en/alleg012.html}
@@ -227,7 +227,7 @@ external geta: color -> int = "ml_geta"
 external palette_color: int -> color = "ml_palette_color"
 
 (** {4 Display Dependent Pixel Format} *)
- 
+
 external makecol8: r:int -> g:int -> b:int -> color = "ml_makecol8"
 external makecol15: r:int -> g:int -> b:int -> color = "ml_makecol15"
 external makecol16: r:int -> g:int -> b:int -> color = "ml_makecol16"
@@ -382,14 +382,14 @@ external is_system_bitmap: bmp:bitmap -> bool = "ml_is_system_bitmap"
 external is_sub_bitmap: bmp:bitmap -> bool = "ml_is_sub_bitmap"
 
 (*
-get_clip_rect : Returns the clipping rectangle of a bitmap. 
+get_clip_rect : Returns the clipping rectangle of a bitmap.
 
-is_inside_bitmap : Tells if a point is inside a bitmap. 
+is_inside_bitmap : Tells if a point is inside a bitmap.
 
-lock_bitmap : Locks the memory used by a bitmap. 
-screen_h : Global define to obtain the size of the screen. 
-screen_w : Global define to obtain the size of the screen. 
-virtual_h : Global define to obtain the virtual size of the screen. 
+lock_bitmap : Locks the memory used by a bitmap.
+screen_h : Global define to obtain the size of the screen.
+screen_w : Global define to obtain the size of the screen.
+virtual_h : Global define to obtain the virtual size of the screen.
 virtual_w : Global define to obtain the virtual size of the screen.
 *)
 
@@ -662,7 +662,7 @@ external position_mouse_z: z:int -> unit = "ml_position_mouse_z"
 external position_mouse_w: w:int -> unit = "ml_position_mouse_w"
 *)
 external set_mouse_range: x1:int -> y1:int -> x2:int -> y2:int -> unit = "ml_set_mouse_range"
-external set_mouse_speed: xspeed:int -> yspeed:int -> unit = "ml_set_mouse_speed" 
+external set_mouse_speed: xspeed:int -> yspeed:int -> unit = "ml_set_mouse_speed"
 
 
 external set_mouse_sprite: sprite:bitmap -> unit = "ml_set_mouse_sprite"
@@ -869,7 +869,7 @@ external draw_character_ex: bmp:bitmap -> sprite:bitmap -> x:int -> y:int -> col
     = "ml_draw_character_ex_bytecode"
       "ml_draw_character_ex_native"
 
-external draw_lit_sprite: bmp:bitmap -> sprite:bitmap -> 
+external draw_lit_sprite: bmp:bitmap -> sprite:bitmap ->
     x:int -> y:int -> color:color -> unit = "ml_draw_lit_sprite"
 
 external draw_trans_sprite: bmp:bitmap -> sprite:bitmap -> x:int -> y:int -> unit = "ml_draw_trans_sprite"
@@ -891,7 +891,7 @@ type rle_sprite
 external get_rle_sprite: tmp:bitmap -> rle_sprite = "ml_get_rle_sprite"
 external destroy_rle_sprite: rle_sprite -> unit = "ml_destroy_rle_sprite"
 external draw_rle_sprite: bmp:bitmap -> sprite:rle_sprite -> x:int -> y:int -> unit = "ml_draw_rle_sprite"
-external draw_trans_rle_sprite: bmp:bitmap -> sprite:rle_sprite -> 
+external draw_trans_rle_sprite: bmp:bitmap -> sprite:rle_sprite ->
     x:int -> y:int -> unit = "ml_draw_trans_rle_sprite"
 external draw_lit_rle_sprite: bmp:bitmap -> sprite:rle_sprite ->
     x:int -> y:int -> color:color -> unit = "ml_draw_lit_rle_sprite"
@@ -1278,8 +1278,8 @@ external new_matrix: unit -> matrix = "ml_new_matrix"
 external new_matrix_f: unit -> matrix_f = "ml_new_matrix_f"
 (** [new_matrix] functions provide uninitialised matrices made to be set
     with the [get_*_matrix] functions. The choice have been made to not make
-    the [get_*_matrix] functions return a fresh malloc'ed matrix, because 
-    these are mainly to be used in the display loop, so alloc the matrices 
+    the [get_*_matrix] functions return a fresh malloc'ed matrix, because
+    these are mainly to be used in the display loop, so alloc the matrices
     with [new_matrix] before the loop, manipulate and use these in the loop,
     and finaly free it with [free_matrix] at the end of the display loop. *)
 
